@@ -44,7 +44,7 @@ RUN apt-get update -y -q \
     apt-get update && apt-get install -y curl && \
     curl -sSL -O https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
-    apt-get update && apt install -y krb5-user mssql-tools18 unixodbc-dev emacs-nox \
+    apt-get update && apt-get install -y krb5-user mssql-tools18 unixodbc-dev emacs-nox \
  && apt-get autoremove -y -q \
     # chown $HOME to workaround that the xorg installation creates a
     # /home/jovyan/.cache directory owned by root
