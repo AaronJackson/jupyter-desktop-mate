@@ -49,10 +49,10 @@ RUN apt-get update -y -q \
  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/microsoft/msodbcsql18/ && touch /opt/microsoft/msodbcsql18/ACCEPT_EULA && \
-    apt update && apt install -y curl && \
+    apt-get update && apt-get install -y curl && \
     curl -sSL -O https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
-    apt update && apt install -y krb5-user mssql-tools18 unixodbc-dev emacs-nox
+    apt-get update && apt install -y krb5-user mssql-tools18 unixodbc-dev emacs-nox
 
 USER $NB_USER
 
