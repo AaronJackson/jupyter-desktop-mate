@@ -5,7 +5,7 @@ ARG ACCEPT_EULA=Y
 
 USER root
 
-# hadolint ignore=DL3008
+# hadolint ignore=DL3008 ignore=DL3015
 RUN apt-get update -y -q \
  && apt-get install -y -q --no-install-recommends \
         tigervnc-standalone-server \
@@ -41,7 +41,7 @@ RUN apt-get update -y -q \
         blueman \
         mate-screensaver \
  && mkdir -p /opt/microsoft/msodbcsql18/ && touch /opt/microsoft/msodbcsql18/ACCEPT_EULA && \
-    apt-get update && apt-get install -y curl && \
+    apt-get update && apt-get install --no-install-recommends -y curl && \
     curl -sSL -O https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     apt-get update && apt-get install -y krb5-user mssql-tools18 unixodbc-dev emacs-nox \
