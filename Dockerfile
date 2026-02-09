@@ -1,5 +1,8 @@
 FROM quay.io/jupyter/base-notebook:2026-01-26
 
+ARG DEBIAN_FRONTEND=noninteractive
+ARG ACCEPT_EULA=Y
+
 USER root
 
 # hadolint ignore=DL3008
@@ -44,6 +47,12 @@ RUN apt-get update -y -q \
  && mkdir -p /opt/install "$HOME/.vnc" \
  && chown -R "$NB_UID:$NB_GID" "$HOME" /opt/install \
  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/microsoft/msodbcsql18/ && touch /opt/microsoft/msodbcsql18/ACCEPT_EULA && \
+    apt update && apt install -y curl && \
+    curl -sSL -O https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt update && apt install -y krb5-user mssql-tools18 unixodbc-dev emacs-nox
 
 USER $NB_USER
 
